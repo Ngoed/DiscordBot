@@ -5,7 +5,7 @@ using Discord.Commands;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-
+/hh
 namespace DiscordBot
 {
 	class Program
