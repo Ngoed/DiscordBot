@@ -5,7 +5,7 @@ using Discord.Commands;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-/hh
+
 namespace DiscordBot
 {
 	class Program
@@ -56,7 +56,8 @@ namespace DiscordBot
 		{
 			var message = arg as SocketUserMessage;
 			var context = new SocketCommandContext(_socketClient, message);
-			if (message.Author.IsBot) return;
+			if (message.Author.IsBot) 
+				return;
 
 			int argPos = 0;
 			if (message.HasStringPrefix("!",ref argPos ))
