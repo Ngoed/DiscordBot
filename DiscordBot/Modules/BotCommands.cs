@@ -10,12 +10,14 @@ namespace DiscordBot.Modules
 {
 	public class BotCommands : ModuleBase<SocketCommandContext>
 	{
+
 		[Command("ping")]
 		public async Task Ping()
 		{
 			await ReplyAsync("Hello");
 			await ReplyAsync("Hi " + Context.User.Mention);
 		}
+
 
 		[Command("join")]
 		public async Task JoinVoice()
@@ -27,11 +29,13 @@ namespace DiscordBot.Modules
 			}			
 		}
 
+
 		[Command("age")]
 		public async Task GetAge()
 		{
 			await ReplyAsync("Account created on " + Context.User.CreatedAt);
 		}
+
 
 		[Command("channel")]
 		public async Task GetChannelName()
