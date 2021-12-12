@@ -17,7 +17,7 @@ namespace DiscordBot.Modules
 			await ReplyAsync("Hi " + Context.User.Mention);
 		}
 
-		[Command("maybe")]
+		[Command("join")]
 		public async Task JoinVoice()
 		{
 			var voicestate = Context.User as IVoiceState;
@@ -27,6 +27,17 @@ namespace DiscordBot.Modules
 			}			
 		}
 
+		[Command("age")]
+		public async Task GetAge()
+		{
+			await ReplyAsync("Account created on " + Context.User.CreatedAt);
+		}
+
+		[Command("channel")]
+		public async Task GetChannelName()
+		{
+			await ReplyAsync("You are in " + Context.Channel.Name);
+		}
 
 
 

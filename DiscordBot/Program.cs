@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using Discord.Audio;
+//using Victoria;
+//using Victoria.Enums;
 
 
 namespace DiscordBot
@@ -30,6 +32,8 @@ namespace DiscordBot
 			_serviceProvider = new ServiceCollection()
 				.AddSingleton(_socketClient)
 				.AddSingleton(_commandService)
+				//.AddSingleton<LavaNode>()
+				//.AddSingleton<LavaConfig>()
 				.BuildServiceProvider();
 			
 			
@@ -63,7 +67,7 @@ namespace DiscordBot
 		
 
 
-
+		//command handler
 
 		private async Task HandleCommandAsync(SocketMessage arg)
 		{
