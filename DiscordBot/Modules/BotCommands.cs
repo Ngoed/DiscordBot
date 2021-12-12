@@ -13,8 +13,22 @@ namespace DiscordBot.Modules
 		[Command("ping")]
 		public async Task Ping()
 		{
-			await ReplyAsync("hello");
+			await ReplyAsync("Hello");
 			await ReplyAsync("Hi " + Context.User.Mention);
 		}
+
+		[Command("maybe")]
+		public async Task JoinVoice()
+		{
+			var voicestate = Context.User as IVoiceState;
+			if( voicestate?.VoiceChannel == null)
+			{
+				await ReplyAsync("Connect to a voice channel!");
+			}			
+		}
+
+
+
+
 	}
 }

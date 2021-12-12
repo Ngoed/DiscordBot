@@ -5,6 +5,8 @@ using Discord.Commands;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using Discord.Audio;
+
 
 namespace DiscordBot
 {
@@ -15,21 +17,28 @@ namespace DiscordBot
 
 		private DiscordSocketClient _socketClient;
 		private CommandService _commandService;
-		private IServiceProvider _serviceProvider;		
+		private IServiceProvider _serviceProvider;
+
 
 		public async Task RunBotAsync()
 		{
 			_socketClient = new DiscordSocketClient();
 			_commandService = new CommandService();
 
+
+			//Dependency Injection
 			_serviceProvider = new ServiceCollection()
 				.AddSingleton(_socketClient)
 				.AddSingleton(_commandService)
 				.BuildServiceProvider();
+			
+			
+
 
 			string token = "OTA1MjY1MzY1NDU2NjU4NDQz.YYHkEg.MshFWVIq6TaFq_IBpjPGczYW8Pg";
 
 			_socketClient.Log += _socketClient_Log;
+			
 
 			await RegisterCommandsAsync();
 
@@ -51,6 +60,10 @@ namespace DiscordBot
 			_socketClient.MessageReceived += HandleCommandAsync;
 			await _commandService.AddModulesAsync(Assembly.GetEntryAssembly(), _serviceProvider);
 		}
+		
+
+
+
 
 		private async Task HandleCommandAsync(SocketMessage arg)
 		{
