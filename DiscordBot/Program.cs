@@ -14,7 +14,8 @@ namespace DiscordBot
 {
 	class Program
 	{
-		public static void Main(string[] args) => new Program().RunBotAsync().GetAwaiter().GetResult();
+		public static void Main(string[] args) 
+			=> new Program().MainAsync().GetAwaiter().GetResult();
 	
 
 		private DiscordSocketClient _socketClient;
@@ -22,7 +23,7 @@ namespace DiscordBot
 		private IServiceProvider _serviceProvider;
 
 
-		public async Task RunBotAsync()
+		public async Task MainAsync()
 		{
 			_socketClient = new DiscordSocketClient();
 			_commandService = new CommandService();
@@ -36,18 +37,14 @@ namespace DiscordBot
 				//.AddSingleton<LavaConfig>()
 				.BuildServiceProvider();
 			
-			
-
-
 			string token = "OTA1MjY1MzY1NDU2NjU4NDQz.YYHkEg.MshFWVIq6TaFq_IBpjPGczYW8Pg";
 
 			_socketClient.Log += _socketClient_Log;
-			
+
 
 			await RegisterCommandsAsync();
 
 			await _socketClient.LoginAsync(TokenType.Bot, token);
-
 			await _socketClient.StartAsync();
 
 			await Task.Delay(-1);
@@ -64,7 +61,7 @@ namespace DiscordBot
 			_socketClient.MessageReceived += HandleCommandAsync;
 			await _commandService.AddModulesAsync(Assembly.GetEntryAssembly(), _serviceProvider);
 		}
-		
+
 
 
 		//command handler
@@ -73,11 +70,11 @@ namespace DiscordBot
 		{
 			var message = arg as SocketUserMessage;
 			var context = new SocketCommandContext(_socketClient, message);
-			if (message.Author.IsBot) 
+			if (message.Author.IsBot)
 				return;
 
 			int argPos = 0;
-			if (message.HasStringPrefix("!",ref argPos ))
+			if (message.HasStringPrefix("!", ref argPos))
 			{
 				var result = await _commandService.ExecuteAsync(context, argPos, _serviceProvider);
 				if (!result.IsSuccess) Console.WriteLine(result.ErrorReason);
