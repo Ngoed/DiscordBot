@@ -37,7 +37,7 @@ namespace DiscordBot
 				//.AddSingleton<LavaConfig>()
 				.BuildServiceProvider();
 			
-			string token = "OTA1MjY1MzY1NDU2NjU4NDQz.YYHkEg.dv4x_H0BeCrLD-uhv76YXmOHOcw";
+			string token = "";
 
 			_socketClient.Log += _socketClient_Log;
 
